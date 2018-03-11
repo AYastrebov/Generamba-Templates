@@ -1,6 +1,7 @@
 ![](https://img.shields.io/badge/swift-4.0-green.svg)
 ![](https://img.shields.io/badge/VIPER-generamba-orange.svg)
 
+Generamba Template with Dependency inversion ([EasyDI](https://github.com/AndreyZarembo/EasyDi)), Storyboards ([Reusable](https://github.com/AliSoftware/Reusable)), Routing ([LightRoute](https://github.com/SpectralDragon/LightRoute)) and Tests ([Quick](https://github.com/Quick/Quick) + [Nible](https://github.com/Quick/Nimble))
 
 # HOWTO:
 
@@ -35,11 +36,9 @@ Module
   ├── Router
   │    ├── ModuleRouterInput.swift
   │    └── ModuleRouter.swift
-  ├── Assembly
-  │    ├── ModuleAssembly.swift 
-  │    └── ModuleInitializer.swift
-  └── Protocols
-       └── ModuleProtocols.swift
+  └── Assembly
+       ├── ModuleAssembly.swift 
+       └── ModuleInitializer.swift
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
