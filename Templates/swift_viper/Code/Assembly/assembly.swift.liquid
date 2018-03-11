@@ -1,0 +1,49 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+import EasyDi
+
+class {{ module_info.name }}ModuleAssembly: Assembly {
+
+    lazy var serviceAssembly: ServiceAssembly = self.context.assembly()
+
+    func inject(into controller: {{ module_info.name }}ViewController) {
+        let _:{{ module_info.name }}ViewController = define(key: "view", init: controller) {
+            $0.output = self.presenter
+            return $0
+        }
+    }
+
+    var view: {{ module_info.name }}ViewController {
+        return definePlaceholder()
+    }
+
+    var router: {{ module_info.name }}Router {
+        return define(init: {{ module_info.name }}Router()) {
+            $0.transitionHandler = self.view
+            return $0
+        }
+    }
+
+    var presenter: {{ module_info.name }}Presenter {
+        return define(init: {{ module_info.name }}Presenter()) {
+            $0.view = self.view
+            $0.router = self.router
+            $0.interactor = self.interactor
+            return $0
+        }
+    }
+
+    var interactor: {{ module_info.name }}Interactor {
+        return define(init: {{ module_info.name }}Interactor()) {
+            $0.output = self.presenter
+            return $0
+        }
+    }
+}
