@@ -6,12 +6,9 @@
 //  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
 //
 
-import UIKit
 import EasyDi
 
 class {{ module_info.name }}ModuleAssembly: Assembly {
-
-    lazy var serviceAssembly: ServiceAssembly = self.context.assembly()
 
     func inject(into controller: {{ module_info.name }}ViewController) {
         let _:{{ module_info.name }}ViewController = define(key: "view", init: controller) {
