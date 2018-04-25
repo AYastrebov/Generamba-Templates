@@ -28,7 +28,6 @@ code_files:
 - {name: Router/Router.swift, path: Code/Router/router.swift.liquid}
 
 # Assembly
-- {name: Assembly/Initializer.swift, path: Code/Assembly/initializer.swift.liquid}
 - {name: Assembly/Assembly.swift, path: Code/Assembly/assembly.swift.liquid}
 
 # The declarations for test files
