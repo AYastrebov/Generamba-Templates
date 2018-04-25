@@ -16,8 +16,6 @@ class {{ module_info.name }}ModuleAssemblySpec: QuickSpec {
 
         let viewController = {{ module_info.name }}ViewController.instantiate()
 
-        {{ module_info.name }}ModuleAssembly.instance().inject(into: viewController)
-
         describe("Checking module creation") {
 
             it("Must be {{ module_info.name }}ViewController") {
