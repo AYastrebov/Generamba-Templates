@@ -5,7 +5,7 @@ Generamba Template with Dependency inversion ([EasyDi](https://github.com/Andrey
 
 # HOWTO:
 
-1) [Install Generamba](https://github.com/rambler-digital-solutions/Generamba)
+1) [Install Generamba](https://github.com/AYastrebov/Generamba)
 
 2) [Initialize Generamba](https://github.com/rambler-digital-solutions/Generamba/wiki/Available-Commands#basic-generamba-configuration) in your project's folder and install templates from this repo
 
@@ -75,7 +75,7 @@ final class ApplicationAssembly {
 extension SwinjectStoryboard {
     
     @objc class func setup() {
-        defaultContainer = ModuleAssembly.assembler.resolver as! Container
+        defaultContainer = ApplicationAssembly.assembler.resolver as! Container
     }
 }
 ```
