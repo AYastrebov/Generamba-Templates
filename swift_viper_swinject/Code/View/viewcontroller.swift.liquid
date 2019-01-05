@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import SwinjectStoryboard
 import Reusable
 
 final class {{ module_info.name }}ViewController: UIViewController, {{module_info.name}}ViewInput, StoryboardSceneBased {
 
-	static let sceneStoryboard = UIStoryboard(name: "{{ module_info.name }}Module", bundle: Bundle(for: {{ module_info.name }}ViewController.self))
+	static let sceneStoryboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: Bundle(for: {{ module_info.name }}ViewController.self), container: SwinjectStoryboard.defaultContainer) as UIStoryboard
 
     var output: {{ module_info.name }}ViewOutput!
 

@@ -14,14 +14,13 @@ import SwinjectStoryboard
 
 class {{ module_info.name }}ModuleAssemblySpec: QuickSpec {
 
-    let bundle = Bundle(for: {{ module_info.name }}ModuleAssemblySpec.self)
     let container = Container()
 
     override func spec() {
 
         {{ module_info.name }}ModuleAssembly().assemble(container: container)
 
-        let storyboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: bundle, container: container)
+        let storyboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: Bundle(for: {{ module_info.name }}ModuleAssemblySpec.self), container: container)
         let viewController = storyboard.instantiateViewController(withIdentifier: "{{ module_info.name }}ViewController") as! {{ module_info.name }}ViewController
 
         describe("Checking module creation") {
