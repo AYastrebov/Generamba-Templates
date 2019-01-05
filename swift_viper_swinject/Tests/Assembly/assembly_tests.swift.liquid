@@ -8,13 +8,21 @@
 
 import Quick
 import Nimble
+import Swinject
+import SwinjectStoryboard
 @testable import {{ module_info.project_name }}
 
 class {{ module_info.name }}ModuleAssemblySpec: QuickSpec {
 
+    let bundle = Bundle(for: {{ module_info.name }}ModuleAssemblySpec.self)
+    let container = Container()
+
     override func spec() {
 
-        let viewController = {{ module_info.name }}ViewController.instantiate()
+        {{ module_info.name }}ModuleAssembly().assemble(container: container)
+
+        let storyboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: bundle, container: container)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "{{ module_info.name }}ViewController") as! {{ module_info.name }}ViewController
 
         describe("Checking module creation") {
 
