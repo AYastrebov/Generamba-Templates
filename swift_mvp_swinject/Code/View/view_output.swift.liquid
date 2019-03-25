@@ -1,17 +1,8 @@
-//
-//  {{ module_info.name }}{{ module_info.file_name }}
-//  {{ module_info.project_name }}
-//
-//  Created by {{ developer.name }} on {{ date }}.
-//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
-//
+{% include 'header' %}
 
-protocol {{ module_info.name }}ViewOutput {
+// MARK: - {{ prefix }}{{ module_info.name }}ViewOutput
 
-    /**
-        @author {{ developer.name }}
-        Notify presenter that view is ready
-    */
+protocol {{ prefix }}{{ module_info.name }}ViewOutput {
 
     func viewIsReady()
 }

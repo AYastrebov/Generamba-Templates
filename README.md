@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/swift-4.0-green.svg)
+![](https://img.shields.io/badge/swift-5.0-green.svg)
 ![](https://img.shields.io/badge/VIPER-generamba-orange.svg)
 
 Generamba Template with Dependency inversion ([EasyDi](https://github.com/AndreyZarembo/EasyDi) or [Swinject](https://github.com/Swinject/Swinject)), Storyboards ([Reusable](https://github.com/AliSoftware/Reusable)), Routing ([LightRoute](https://github.com/SpectralDragon/LightRoute)) and Tests ([Quick](https://github.com/Quick/Quick) + [Nible](https://github.com/Quick/Nimble))
@@ -80,5 +80,5 @@ extension SwinjectStoryboard {
 }
 ```
 
-Russian Federation, Saint-Petersburg, 2018
+Russian Federation, Saint-Petersburg, 2019
 Yastrebov A.A.

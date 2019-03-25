@@ -1,44 +1,44 @@
-//
-//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
-//  {{ module_info.project_name }}
-//
-//  Created by {{ developer.name }} on {{ date }}.
-//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
-//
+{% include 'header' %}
 
-import Quick
-import Nimble
-import Swinject
-import SwinjectStoryboard
-@testable import {{ module_info.project_name }}
+import XCTest
 
-class {{ module_info.name }}ModuleAssemblySpec: QuickSpec {
+class {{ prefix }}{{ module_info.name }}ModuleAssemblyTests: XCTestCase {
 
-    let container = Container()
+    override func setUp() {
+        super.setUp()
+        // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
 
-    override func spec() {
+    override func tearDown() {
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        super.tearDown()
+    }
 
-        {{ module_info.name }}ModuleAssembly().assemble(container: container)
+    func testModuleAssembly() {
 
+        let container = Container()
+        let assembly = {{ module_info.name }}ModuleAssembly()
+
+        assembly.assemble(container: container)
+
+        //given
         let storyboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: Bundle(for: {{ module_info.name }}ModuleAssemblySpec.self), container: container)
         let viewController = storyboard.instantiateViewController(withIdentifier: "{{ module_info.name }}ViewController") as! {{ module_info.name }}ViewController
 
-        describe("Checking module creation") {
+        //then
+        XCTAssertNotNil(viewController.output, "{{ module_info.name }}ViewController is nil after configuration")
+        XCTAssertTrue(viewController.output is {{ module_info.name }}Presenter, "output is not {{ module_info.name }}Presenter")
 
-            it("Must be {{ module_info.name }}ViewController") {
-                expect(viewController).to(beAKindOf({{ module_info.name }}ViewController.self))
-            }
+        let presenter: {{ module_info.name }}Presenter = viewController.output as! {{ module_info.name }}Presenter
+        XCTAssertNotNil(presenter.view, "view in {{ module_info.name }}Presenter is nil after configuration")
+    }
 
-            it("Must contain correct output") {
-                expect(viewController.output).toNot(beNil())
-                expect(viewController.output).to(beAKindOf({{ module_info.name }}Presenter.self))
-            }
+    class {{ prefix }}{{ module_info.name }}ViewControllerMock: {{ module_info.name }}ViewController {
 
-            let presenter = viewController.output as! {{ module_info.name }}Presenter
-            it("Must contain view") {
-                expect(presenter.view).toNot(beNil())
-            }
+        var setupInitialStateDidCall = false
+
+        override func setupInitialState() {
+            setupInitialStateDidCall = true
         }
     }
 }
-

@@ -1,35 +1,29 @@
-//
-//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
-//  {{ module_info.project_name }}
-//
-//  Created by {{ developer.name }} on {{ date }}.
-//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
-//
+{% include 'header' %}
 
 import EasyDi
 
-class {{ module_info.name }}ModuleAssembly: Assembly {
+final class {{ prefix }}{{ module_info.name }}ModuleAssembly: Assembly {
 
-    func inject(into controller: {{ module_info.name }}ViewController) {
-        let _:{{ module_info.name }}ViewController = define(key: "view", init: controller) {
+    func inject(into controller: {{ prefix }}{{ module_info.name }}ViewController) {
+        let _: {{ prefix }}{{ module_info.name }}ViewController = define(key: "view", init: controller) {
             $0.output = self.presenter
             return $0
         }
     }
 
-    var view: {{ module_info.name }}ViewController {
+    var view: {{ prefix }}{{ module_info.name }}ViewController {
         return definePlaceholder()
     }
 
-    var router: {{ module_info.name }}Router {
-        return define(init: {{ module_info.name }}Router()) {
+    var router: {{ prefix }}{{ module_info.name }}Router {
+        return define(init: {{ prefix }}{{ module_info.name }}Router()) {
             $0.transitionHandler = self.view
             return $0
         }
     }
 
-    var presenter: {{ module_info.name }}Presenter {
-        return define(init: {{ module_info.name }}Presenter()) {
+    var presenter: {{ prefix }}{{ module_info.name }}Presenter {
+        return define(init: {{ prefix }}{{ module_info.name }}Presenter()) {
             $0.view = self.view
             $0.router = self.router
             $0.interactor = self.interactor
@@ -37,8 +31,8 @@ class {{ module_info.name }}ModuleAssembly: Assembly {
         }
     }
 
-    var interactor: {{ module_info.name }}Interactor {
-        return define(init: {{ module_info.name }}Interactor()) {
+    var interactor: {{ prefix }}{{ module_info.name }}Interactor {
+        return define(init: {{ prefix }}{{ module_info.name }}Interactor()) {
             $0.output = self.presenter
             return $0
         }

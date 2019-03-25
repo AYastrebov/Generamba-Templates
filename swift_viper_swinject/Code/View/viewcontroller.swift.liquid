@@ -1,20 +1,16 @@
-//
-//  {{ module_info.name }}{{ module_info.file_name }}
-//  {{ module_info.project_name }}
-//
-//  Created by {{ developer.name }} on {{ date }}.
-//  Copyright © {{ year }} {{ developer.company }}. All rights reserved.
-//
+{% include 'header' %}
 
 import UIKit
 import SwinjectStoryboard
 import Reusable
 
-final class {{ module_info.name }}ViewController: UIViewController, {{module_info.name}}ViewInput, StoryboardSceneBased {
+// MARK: - {{ prefix }}{{ module_info.name }}ViewController
 
-	static let sceneStoryboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: Bundle(for: {{ module_info.name }}ViewController.self), container: SwinjectStoryboard.defaultContainer) as UIStoryboard
+final class {{ prefix }}{{ module_info.name }}ViewController: UIViewController, StoryboardSceneBased {
 
-    var output: {{ module_info.name }}ViewOutput!
+	static let sceneStoryboard = SwinjectStoryboard.create(name: "{{ prefix }}{{ module_info.name }}Module", bundle: Bundle(for: {{ prefix }}{{ module_info.name }}ViewController.self), container: SwinjectStoryboard.defaultContainer) as UIStoryboard
+
+    var output: {{ prefix }}{{ module_info.name }}ViewOutput!
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -24,5 +20,14 @@ final class {{ module_info.name }}ViewController: UIViewController, {{module_inf
 
     // MARK: {{module_info.name}}ViewInput
     func setupInitialState() {
+    }
+}
+
+// MARK: - {{ prefix }}{{ module_info.name }}ViewInput
+
+extension {{ prefix }}{{ module_info.name }}ViewController: {{ prefix }}{{ module_info.name }}ViewInput {
+    
+    func setupInitialState() {
+        
     }
 }
