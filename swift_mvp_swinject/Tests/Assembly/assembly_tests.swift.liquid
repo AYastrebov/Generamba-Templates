@@ -1,6 +1,11 @@
 {% include 'header' %}
 
+@testable
+import {{ custom_parameters.project_name }}
 import XCTest
+import Swinject
+
+// MARK: - {{ prefix }}{{ module_info.name }}ModuleAssemblyTest
 
 class {{ prefix }}{{ module_info.name }}ModuleAssemblyTests: XCTestCase {
 
@@ -17,28 +22,19 @@ class {{ prefix }}{{ module_info.name }}ModuleAssemblyTests: XCTestCase {
     func testModuleAssembly() {
 
         let container = Container()
-        let assembly = {{ module_info.name }}ModuleAssembly()
+        let assembly = {{ prefix }}{{ module_info.name }}ModuleAssembly()
 
         assembly.assemble(container: container)
 
         //given
-        let storyboard = SwinjectStoryboard.create(name: "{{ module_info.name }}Module", bundle: Bundle(for: {{ module_info.name }}ModuleAssemblySpec.self), container: container)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "{{ module_info.name }}ViewController") as! {{ module_info.name }}ViewController
+        let storyboard = SwinjectStoryboard.create(name: "{{ prefix }}{{ module_info.name }}Module", bundle: Bundle(for: {{ prefix }}{{ module_info.name }}ModuleAssemblySpec.self), container: container)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "{{ prefix }}{{ module_info.name }}ViewController") as! {{ prefix }}{{ module_info.name }}ViewController
 
         //then
-        XCTAssertNotNil(viewController.output, "{{ module_info.name }}ViewController is nil after configuration")
-        XCTAssertTrue(viewController.output is {{ module_info.name }}Presenter, "output is not {{ module_info.name }}Presenter")
+        XCTAssertNotNil(viewController.output, "{{ prefix }}{{ module_info.name }}ViewController is nil after configuration")
+        XCTAssertTrue(viewController.output is {{ prefix }}{{ module_info.name }}Presenter, "output is not {{ prefix }}{{ module_info.name }}Presenter")
 
-        let presenter: {{ module_info.name }}Presenter = viewController.output as! {{ module_info.name }}Presenter
-        XCTAssertNotNil(presenter.view, "view in {{ module_info.name }}Presenter is nil after configuration")
-    }
-
-    class {{ prefix }}{{ module_info.name }}ViewControllerMock: {{ module_info.name }}ViewController {
-
-        var setupInitialStateDidCall = false
-
-        override func setupInitialState() {
-            setupInitialStateDidCall = true
-        }
+        let presenter: {{ prefix }}{{ module_info.name }}Presenter = viewController.output as! {{ prefix }}{{ module_info.name }}Presenter
+        XCTAssertNotNil(presenter.view, "view in {{ prefix }}{{ module_info.name }}Presenter is nil after configuration")
     }
 }

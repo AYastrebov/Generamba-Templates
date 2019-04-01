@@ -1,12 +1,20 @@
 {% include 'header' %}
 
+@testable
+import {{ custom_parameters.project_name }}
 import XCTest
+
+// MARK: - {{ prefix }}{{ module_info.name }}ViewTests
 
 class {{ prefix }}{{ module_info.name }}ViewTests: XCTestCase {
 
+    let output = MockPresenter()
+    let viewController = {{ prefix }}{{ module_info.name }}ViewController()
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        viewController.output = output
     }
 
     override func tearDown() {
@@ -14,4 +22,30 @@ class {{ prefix }}{{ module_info.name }}ViewTests: XCTestCase {
         super.tearDown()
     }
 
+    func testThatInitialTriggerWillBeCalled() {
+        
+        // given
+        
+        output.didTriggerViewReadyEventDidCalled = false
+        
+        // when
+        
+        viewController.viewDidLoad()
+        
+        // then
+        
+        XCTAssertTrue(output.didTriggerViewReadyEventDidCalled)
+    }
+
+    // MARK: - MockPresenter
+    
+    class MockPresenter: {{ prefix }}{{ module_info.name }}ViewOutput {
+        
+        var didTriggerViewReadyEventDidCalled = false
+        
+        func didTriggerViewReadyEvent() {
+            
+            didTriggerViewReadyEventDidCalled = true
+        }
+    }
 }
