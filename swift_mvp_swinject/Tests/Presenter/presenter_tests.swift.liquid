@@ -37,13 +37,6 @@ class {{ prefix }}{{ module_info.name }}PresenterTests: XCTestCase {
         XCTAssertTrue(view.setupInitialStateDidCall)
     }
 
-    class MockViewController: {{ module_info.name }}ViewInput {
-
-        func setupInitialState() {
-
-        }
-    }
-
     // MARK: - MockViewController
 
     class MockViewController: {{ prefix }}{{ module_info.name }}ViewInput {
