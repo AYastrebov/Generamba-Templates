@@ -10,6 +10,7 @@ final class {{ prefix }}{{ module_info.name }}ModuleAssembly: Assembly {
         container.register({{ prefix }}{{ module_info.name }}Presenter.self) { (r, viewController: {{ prefix }}{{ module_info.name }}ViewController) in
             let presenter = {{ module_info.name }}Presenter()
             presenter.view = viewController
+            presenter.resolver = r
             return presenter
         }
 

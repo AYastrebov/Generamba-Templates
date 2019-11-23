@@ -1,8 +1,12 @@
 {% include 'header' %}
 
+import Swinject
+
 // MARK: - {{ prefix }}{{ module_info.name }}Presenter
 
 final class {{ prefix }}{{ module_info.name }}Presenter {
+
+    var resolver: Resolver!
 
     weak var view: {{ prefix }}{{ module_info.name }}ViewInput?
 }
